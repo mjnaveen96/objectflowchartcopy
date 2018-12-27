@@ -1,101 +1,75 @@
 (function() {
+  angular.module('myTree')
+.directive('treeDirective',treeDirectiveFun);
+function treeDirectiveFun() {
+  return{
+link : treeFun,
+restrict : 'EA',
+templateUrl:"app/tre/templates/treeTemplate.html"
+}
+function treeFun(scope,element,attrs) {
 
     var par = {
 
-        name: "L0-parent",
-        id: "1",
+        name: "FeatherSoft",
+        id: "FS000",
         level: "0",
         status: "1",
         ch: [{
-            name: "L1-p1",
-            id: "2",
+            name: "FS A Dept",
+            id: "FSA00",
             level: "1",
             status: "1",
             ch: [{
-                name: "L2-p11",
-                id: "3",
+                name: "A Dept Emp1",
+                id: "FSA01",
                 level: "2",
                 status: "1",
-                ch: [{
-                    name: "L3-pa1",
-                    id: "4",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }, {
-                    name: "L3-pa2",
-                    id: "5",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }]
+                ch: []
             }, {
-                name: "L2-p12",
-                id: "6",
+                name: "A Dept Emp2",
+                id: "FSA02",
                 level: "2",
                 status: "1",
-                ch: [{
-                    name: "L3-pb1",
-                    id: "7",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }, {
-                    name: "L3-pb2",
-                    id: "8",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }, {
-                    name: "L3-pb3",
-                    id: "8",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }]
+                ch: []
             }]
 
         }, {
-            name: "L1-p2",
-            id: "9",
+            name: "FS B Dept",
+            id: "FSB00",
             level: "1",
             status: "1",
             ch: [{
-                name: "L2-p21",
-                id: "10",
+                name: "B Dept Emp1",
+                id: "FSB01",
                 level: "2",
                 status: "1",
-                ch: [{
-                    name: "L3-pc1",
-                    id: "11",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }, {
-                    name: "L3-pc2",
-                    id: "12",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }]
+                ch: []
             }, {
-                name: "L2-p22",
-                id: "13",
+                name: "B Dept Emp2",
+                id: "FSB02",
                 level: "2",
                 status: "1",
-                ch: [{
-                    name: "L3-pd1",
-                    id: "14",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }, {
-                    name: "L3-pd2",
-                    id: "15",
-                    level: "3",
-                    status: "1",
-                    ch: []
-                }]
+                ch: []
+            }]
+
+        },{
+            name: "FS C Dept",
+            id: "FSC00",
+            level: "1",
+            status: "1",
+            ch: [{
+                name: "C Dept Emp1",
+                id: "FSC01",
+                level: "2",
+                status: "1",
+                ch: []
+            }, {
+                name: "C Dept Emp2",
+                id: "FSC02",
+                level: "2",
+                status: "1",
+                ch: []
             }]
 
         }]
@@ -108,7 +82,7 @@
     var t = document.createTextNode(par.name);
     div.appendChild(t);
     divisn.appendChild(div);
-    div.style.width = "60px";
+    div.style.width = "80px";
     div.style.height = "60px";
     div.style.background = "#007acc";
     div.style.color = "white";
@@ -119,7 +93,6 @@
     div.addEventListener("click", function() {
 
         view(par);
-        // console.log(par);
         if (par.ch == "") {
             alert("there is no child for this object");
         }
@@ -129,7 +102,6 @@
     function view(parent) {
 
         var container = createlevelcontainer(parent);
-        // console.log(container);
         var position = getPosition(document.getElementById(parent.name));
        var position={left:500};
         if (container != null)
@@ -238,7 +210,7 @@
             var div = document.createElement("div");
             div.style.left = lft+"px";
             lft = lft + diff;
-            div.style.width = "60px";
+            div.style.width = "80px";
             div.style.height = "60px";
             div.style.background = "#007acc";
             div.style.color = "white";
@@ -249,6 +221,7 @@
 
 
             div.value = i;
+            console.log(div.value);
 
             var t = document.createTextNode(i.name);
             div.appendChild(t);
@@ -276,6 +249,7 @@
     	console.log(element.getBoundingClientRect());
         return element.getBoundingClientRect();
     }
-
+}
+}
 }
 )();
